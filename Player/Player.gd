@@ -19,9 +19,11 @@ var state = WALK
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var swordHitbox = $HitboxPivot/Hitbox
 
 func _ready():
 	animationTree.active = true
+	swordHitbox.knockback_vector = Vector2.LEFT
 
 func _physics_process(delta):
 	match state:
@@ -41,6 +43,7 @@ func walk_state(delta):
 	input = input.normalized()
 	
 	if input != Vector2.ZERO:
+		swordHitbox.knockback_vector = input
 		animationTree.set("parameters/Idle/blend_position",input)
 		animationTree.set("parameters/Walk/blend_position",input)
 		animationTree.set("parameters/Kick/blend_position",input)
