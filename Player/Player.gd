@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
-const acceleration : float = 500.0
-const max_speed : float = 80.0
-const friction : float = 500.0
+export(float) var acceleration : float = 500.0
+export(float) var max_speed : float = 80.0
+export(float) var friction : float = 500.0
 var velocity : Vector2 = Vector2.ZERO
+var playerStats = PlayerStats
 
 #states that our character can be in
 enum {
@@ -22,6 +23,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/Hitbox
 
 func _ready():
+	playerStats.connect("no_health",self,"queue_free")
 	animationTree.active = true
 	swordHitbox.knockback_vector = Vector2.LEFT
 
@@ -58,10 +60,13 @@ func walk_state(delta):
 	velocity = move_and_slide(velocity)
 	if Input.is_action_just_pressed("kick"):
 		state = KICK
+		swordHitbox.damage = 1
 	elif Input.is_action_just_pressed("punch"):
 		state = PUNCH
+		swordHitbox.damage = 1
 	elif Input.is_action_just_pressed("special"):
 		state = SPECIAL
+		swordHitbox.damage = 2
 	
 func kick_state(_delta):
 	velocity = Vector2.ZERO
@@ -78,4 +83,5 @@ func special_state(_delta):
 	velocity = Vector2.ZERO
 	animationState.travel("Special")
 	
-
+func _on_Hurtbox_area_entered(area):
+	playerStats.health -= 1

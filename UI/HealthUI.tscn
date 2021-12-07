@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/HealthUI.gd" type="Script" id=1]
+[ext_resource path="res://UI/HeartUIFull.png" type="Texture" id=2]
+
+[node name="HealthUI" type="Control"]
+margin_right = 142.0
+margin_bottom = 13.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 139.0
+margin_bottom = 14.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+margin_right = 15.0
+margin_bottom = 14.0
+texture = ExtResource( 2 )
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+margin_left = 19.0
+margin_right = 129.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+step = 1.0
