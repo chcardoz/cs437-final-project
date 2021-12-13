@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/Bush.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://World/free.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/Bat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/HealthUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://UI/ExpUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "DirtTileset.png 0"
@@ -522,9 +523,8 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 3 )
-centered = false
 region_enabled = true
-region_rect = Rect2( 1, 1, 320, 180 )
+region_rect = Rect2( -111, 1, 853, 493 )
 
 [node name="DirtPathTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -545,10 +545,18 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 393218, 0, 1, 393219, 0, 1, 393220, 0, 1, 393221, 0, 1, 393222, 0, 1, 393223, 0, 1, 393224, 0, 1, 393225, 0, 1, 393226, 0, 1, 393227, 0, 1, 458754, 0, 1, 458755, 0, 1, 458756, 0, 1, 458757, 0, 1, 458758, 0, 1, 458759, 0, 1, 458760, 0, 1, 458761, 0, 1, 458762, 0, 1, 458763, 0, 1, 524290, 0, 1, 524291, 0, 1, 524292, 0, 1, 524293, 0, 1, 524294, 0, 1, 524295, 0, 1, 524296, 0, 1, 524297, 0, 1, 524298, 0, 1, 524299, 0, 1, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 1, 589831, 0, 1, 589832, 0, 1, 589833, 0, 1, 589834, 0, 1, 589835, 0, 1 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 145, 91 )
+current = true
+smoothing_enabled = true
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 145, 91 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bats" type="YSort" parent="YSort"]
 
@@ -576,4 +584,27 @@ position = Vector2( 271, 126 )
 [node name="Bush2" parent="YSort/Bushes" instance=ExtResource( 2 )]
 position = Vector2( 241, 114 )
 
-[node name="HealthUI" parent="." instance=ExtResource( 9 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 98.0
+margin_bottom = 39.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthUI" parent="CanvasLayer/VBoxContainer" instance=ExtResource( 9 )]
+margin_right = 88.0
+margin_bottom = 12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExpUI" parent="CanvasLayer/VBoxContainer" instance=ExtResource( 10 )]
+margin_top = 16.0
+margin_right = 88.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

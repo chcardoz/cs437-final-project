@@ -50,6 +50,7 @@ func seek_player():
 func _on_Hurtbox_area_entered(area):
 	batStats.health -= area.damage
 	knockback = area.knockback_vector * knockback_amount
+	PlayerStats.experience += 10
 
 func _on_Stats_no_health():
 	queue_free()

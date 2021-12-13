@@ -57,7 +57,7 @@ knockback_amount = 110.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "fly"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( 0, -12 )
 
