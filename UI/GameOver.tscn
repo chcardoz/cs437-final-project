@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/Bakbak_One/bakbak_25tres.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/Buttons/StartButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Buttons/QuitButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/FadeIn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://UI/GameOver.gd" type="Script" id=5]
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 300.0
+margin_bottom = 160.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 280.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 1 )
+text = "GAME OVER"
+align = 1
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_top = 40.0
+margin_right = 280.0
+margin_bottom = 140.0
+size_flags_vertical = 3
+
+[node name="Options" type="VBoxContainer" parent="Menu/CenterRow"]
+margin_right = 280.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="StartButton" parent="Menu/CenterRow/Options" instance=ExtResource( 2 )]
+margin_top = 28.0
+margin_bottom = 48.0
+
+[node name="Label" parent="Menu/CenterRow/Options/StartButton" index="0"]
+text = "Restart Game"
+
+[node name="QuitButton" parent="Menu/CenterRow/Options" instance=ExtResource( 3 )]
+margin_top = 52.0
+margin_bottom = 72.0
+
+[node name="FadeIn" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]
+
+[editable path="Menu/CenterRow/Options/StartButton"]

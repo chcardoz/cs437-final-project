@@ -559,6 +559,8 @@ position = Vector2( 162, 91 )
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 remote_path = NodePath("../../../Camera2D")
 
+[node name="Bats" type="YSort" parent="YSort"]
+
 [node name="Environment" type="YSort" parent="YSort"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

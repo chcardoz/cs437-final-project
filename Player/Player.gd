@@ -23,7 +23,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/Hitbox
 
 func _ready():
-	playerStats.connect("no_health",self,"queue_free")
+	playerStats.connect("no_health",self,"game_over")
 	animationTree.active = true
 	swordHitbox.knockback_vector = Vector2.LEFT
 
@@ -85,3 +85,8 @@ func special_state(_delta):
 	
 func _on_Hurtbox_area_entered(area):
 	playerStats.health -= 1
+	
+func game_over():
+	queue_free()
+	get_tree().reload_current_scene()
+	get_tree().change_scene("res://UI/GameOver.tscn")

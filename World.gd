@@ -3,9 +3,11 @@ extends Node2D
 export(Vector2) var dirt_noise_limit = Vector2(1,0.1)
 export(Vector2) var clif_noise_limit = Vector2(-0.5,-1)
 export(Vector2) var environment_noise_limit = Vector2(0.1,-0.3)
+export(Vector2) var enemy_noise_limit = Vector2(0.2,0)
 
 onready var noise : OpenSimplexNoise = OpenSimplexNoise.new()
 onready var bushScene = preload("res://World/Bush.tscn")
+onready var batScene = preload("res://Enemies/Bat.tscn")
 var startvec = Vector2(-32*100/2,-32*100/2)
 var endvec = Vector2(32*100/2,32*100/2)
 
@@ -21,6 +23,7 @@ func _ready():
 	generate_clif_map()
 	generate_road_map()
 	generate_environment()
+	generate_enemies()
 	
 	
 func generate_road_map():
@@ -50,3 +53,14 @@ func generate_environment():
 					var bush = bushScene.instance()
 					$YSort/Environment.add_child(bush)
 					bush.global_position = Vector2(x*32,y*32)
+					
+func generate_enemies():
+	for x in range(startvec.x/32,endvec.x/32):
+		for y in range(startvec.y/32,endvec.y/32):
+			var temp_noise = noise.get_noise_2d(x,y)
+			if temp_noise < enemy_noise_limit.x and temp_noise > enemy_noise_limit.y:
+				var chance = randi()%40
+				if chance < 2:
+					var bat = batScene.instance()
+					$YSort/Bats.add_child(bat)
+					bat.global_position = Vector2(x*32,y*32)

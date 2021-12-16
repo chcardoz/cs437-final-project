@@ -1,9 +1,6 @@
 # CS 437 Final Project
 
 ## Game Design Document
-### Story
-
-
 ### Scenes
 
 1. Opening Scene
@@ -14,11 +11,10 @@
 
 1. Main Character Cat - White colored cat sprite obtained from Open Game art. The cat came with an animation sprite for simple aniations like walking, punching, kicking and idle. 
 2. Enemy Bats - The enemy bats came as an animation sprite too. They have only one animation, which is the looped flying animation and this keep playing indefinitely. 
-3. Enemy Slime
-4. Bush - Non animated sprite assigned to **static body** in Godot with a simple collision box.
-5. Dirt Road Tile Set - A tile set with different viewes of the dirt road. A tile set contains tiles for all combinations of how the tile might be placed. The dirt road has no collision shapes on it. 
-6. Cliff Tile Set - Another tile set with different views of the cliffs. The cliffs are the onyl environment tiles with collisions shapes on them. 
-7. Tree - A simple tree sprite that is assigned to a static body with a collision box. 
+3. Bush - Non animated sprite assigned to **static body** in Godot with a simple collision box.
+4. Dirt Road Tile Set - A tile set with different viewes of the dirt road. A tile set contains tiles for all combinations of how the tile might be placed. The dirt road has no collision shapes on it. 
+5. Cliff Tile Set - Another tile set with different views of the cliffs. The cliffs are the onyl environment tiles with collisions shapes on them. 
+6. Tree - A simple tree sprite that is assigned to a static body with a collision box. 
 
 ### Interactions
 1. **Main Character with the World** - The colliders of the player, enemy and the world sit on different collision layers. The reason for using collision layers is because we dont want the enemies colliding with each and triggering the health reduction script. Therefore, the players and enemies only collide with the environment and they don't lose health when they do so. The players slide along world collision objects using a function in Godot called ``move_and_slide()``. 
@@ -43,4 +39,10 @@ The above equation is used to calculate the required experience or points for a 
 
 ## State Transition Diagram
 
+
 ## User Instructions
+To play the game, please run the .exe file in the build folder.
+The player can be moved around using the arrow keys
+1. Spacebar - To kick
+2. X - To punch
+3. Z - To perform the special attack. 

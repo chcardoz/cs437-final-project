@@ -18,6 +18,7 @@ func set_health(value):
 	if health <=0 :
 		emit_signal("no_health")
 		
+		
 func set_max_health(value):
 	max_health = value
 	self.health = min(health,max_health)
@@ -45,7 +46,10 @@ func level_up():
 	self.experience_required = get_required_exp(max_health + 1)
 
 func _ready():
+	PlayerStats.health = max_health
+	PlayerStats.experience = 0
 	self.health = max_health
+	self.experience = 0
 	self.experience_required = get_required_exp(max_health+1)
 
 
