@@ -38,7 +38,7 @@ $$\text{Required Exp}(\text{level})=4a+(\text{level})^{b}$$
 The above equation is used to calculate the required experience or points for a given level. This equation is a very common experience level. 0
 
 ## State Transition Diagram
-
+![State Transition diagram](https://github.com/chcardoz/cs437-final-project/blob/master/player_state_diagram.png?raw=true)
 
 ## User Instructions
 To play the game, please run the .exe file in the build folder.
